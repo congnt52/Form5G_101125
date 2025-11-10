@@ -1,0 +1,42 @@
+<Config>
+  <SW1>
+    <Id>1</Id>
+    <IP>10.0.0.20</IP>
+  </SW1>
+  <SW2>
+    <Id>1</Id>
+    <IP>10.0.0.21</IP>
+  </SW2>
+  <SW3>
+    <Id>1</Id>
+    <IP>10.0.0.23</IP>
+  </SW3>	
+	<SeriNumber>
+		<SN>RU25329999
+		</SN>
+	</SeriNumber>
+	<Frequency>
+		<Freq>2600000000</Freq>
+	</Frequency>
+	<Power>
+		<Power>10000</Power>
+	</Power>
+	<TestCases>
+		<TestCases_TX>
+			<TestCase_TX name="C6.1: Base station output power" />
+
+			<TestCase_TX name="C6.2: ACLR">
+				<SubCase name="ACLR1.1" />
+				<SubCase name="ACLR1.2" />
+			</TestCase_TX>
+
+			<TestCase_TX name="C6.3: EVM" />
+		</TestCases_TX>
+		<TestCases_RX>
+			<TestCases_RX name="C6.1:Sensitivity" />
+			<TestCases_RX name="C6.2: Dynamic Range" />
+		</TestCases_RX>
+		
+	</TestCases>
+
+</Config>
