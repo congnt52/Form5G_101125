@@ -1,4 +1,5 @@
 ﻿using Form5G.Instruments.BBU;
+using Form5G.Instruments.VSA;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,7 @@ namespace Form5G
             InitializeComponent();
             BBU = new BBU(this);
             frmBBU = new SetupBBU(this);
+            frmVSA = new SetupVSA(this);
             #region Test1
             LoadFromXml();
             LoadXmltoTextbox();
@@ -41,8 +43,9 @@ namespace Form5G
         int port = 1970;
         string statusBBU = "";
         public BBU BBU;
+        public VSA VSA;
         SetupBBU frmBBU;
-
+        SetupVSA frmVSA;
         //Khai bao thu muc
         public string directionPathTemplate = @"C:\test3gpp\OQC\32T32R10W\templates\";
         public void BBUConnection(string instrument, string IP, string User, string Pass, out bool connStatus)
@@ -50,6 +53,13 @@ namespace Form5G
             BBU.BBUVersion(instrument);
             BBU.Connection(IP, User, Pass, out connStatus);
         }
+
+        public void VSAConnection(string IP, string cmd, string instrument, out string manufacturer, out string model, out string serial)
+        {
+            VSA.Instrument(instrument);
+            VSA.Connection(IP, cmd, out manufacturer, out model, out serial);
+        }
+
 
         public void LogText(string text)
         {
@@ -247,10 +257,13 @@ namespace Form5G
 
         //Khai bao bien
         string instrBBU, ipBBU, userBBU, passBBU;
-
+        string statusVSA = "";
+        string ipVSA = "";
         private void vSAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmVSA.flagConn(statusVSA);
+            frmVSA.ShowDialog();
+            frmVSA.StatusConnection(out ipVSA, out statusVSA);
         }
 
         private void dUToolStripMenuItem_Click(object sender, EventArgs e)
